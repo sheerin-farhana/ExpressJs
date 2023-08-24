@@ -4,19 +4,11 @@ const path = require('path');
 const rootDir = require('../util/path');
 
 const router = express.Router();
+const productsController = require('../controllers/products');
 
+router.get('/add-product',productsController.getAddProduct);
 
-router.get('/add-product',(req,res,next)=>{
-    // console.log('In another Middleware');
-    // res.send('<form action="/add-product" method="POST"><input type="text" name="title"><button type="submit">Add Product</button></form>')
-    res.sendFile(path.join(rootDir,'views','add-product.html'));
-});
-
-router.post('/add-product',(req,res,next) => {
-    console.log(req.body);
-    res.redirect('/');
-
-});
+router.post('/add-product',productsController.postAddProduct);
 
 
 module.exports = router;
